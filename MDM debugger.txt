@@ -1,0 +1,6 @@
+
+//with mailer binding
+
+function mailme(data){try{var from = "noreply.steptest.si@siemens.com";var emailSubject = "Test Mail";var emailBody = "It's just a test mail!	"+data; var to = "shraddha.shah.ext@siemens.com";mailer.mail().from(from).addTo(to).htmlMessage(emailBody).subject(emailSubject).send();}catch (error){logger.info(error);}}
+
+function mailme(variable,data){try{var from = "noreply.steptest.si@siemens.com";var emailSubject = "Test Mail";var emailBody = variable+":"+data; var to = "shraddha.shah.ext@siemens.com";mailer.mail().from(from).addTo(to).htmlMessage(emailBody).subject(emailSubject).send();}catch (error){logger.info(error);}}

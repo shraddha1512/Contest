@@ -1,0 +1,48 @@
+    int strStr(string txt, string pat) {
+        
+        
+        int n = pat.size();
+        
+        vector<int> lpa(n, 0);
+        
+        int i=1, j=0;
+        while(i<n){
+            if(pat[i]==pat[j]){
+                j++;
+                lpa[i] = j;
+                i++;
+            }
+            else{
+                if(j!=0){
+                    j = lpa[j-1];
+                }
+                else
+                    i++;
+            }
+        }
+        
+        debug(pat);
+        debug(lpa);
+        
+        i=0,j=0;
+        int m = txt.size();
+        vector<int> vec;
+        while(i<=m){
+            if(j<n && txt[i] == pat[j]){
+                i++;
+                j++;
+                continue;
+            }
+            if(j==n) vec.push_back(i-n);
+            
+            if(j!=0)
+                j = lpa[j-1];
+            else
+                i++;
+            
+            debug(vec);
+        }
+        
+        debug(vec);
+        return vec.size()==0? -1:vec[0];
+    }

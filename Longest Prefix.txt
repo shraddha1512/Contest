@@ -1,0 +1,27 @@
+string longestPrefix(string s) {
+          // lpa
+        int n = s.size();
+        vector<int> lpa(n, 0);
+        
+        int j=0, i=1;
+        
+        while(i<n){
+            
+            if(s[j]==s[i]){
+                lpa[i] = j+1;
+                i++;
+                j++;
+            }
+            else{
+                if(j!=0){
+                    j = lpa[j-1];
+                }
+                else
+                    i++;
+            }
+        }
+        
+        debug(s);
+        debug(lpa);
+        return s.substr(0, lpa[n-1]);
+    }
