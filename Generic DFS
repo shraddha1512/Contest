@@ -1,0 +1,21 @@
+vector<bool> visited(V, false);
+        
+for(int i=0; i<V; i++){
+    
+    if(!visited[i]){
+        dfsTraversal(i, adj, visited, st);
+    }
+}
+
+//---------------
+void dfsTraversal(int u, vector<vector<int>> &adj, vector<bool> &visited){
+//---------------
+        
+    visited[u] = true;
+    
+    for(int &v: adj[u]){
+        if(!visited[v]){
+            dfsTraversal(v, adjReversed, visited);
+        }
+    }
+}
