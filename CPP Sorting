@@ -1,0 +1,45 @@
+
+--------------------------------------------------------
+Map Sort by Value
+--------------------------------------------------------
+
+    /*
+    In C++, a std::map is an associative container that is always sorted by its keys using a specific comparison criterion. You cannot re-sort the map itself by value because its internal structure (typically a Red-Black Tree) relies on the key's order for efficient lookups.
+    */
+    
+    unordered_map<char,int> m;
+    for(char ch:s){
+        if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'){
+            m[ch]++;
+        }
+    }
+    vector<pair<char,int>> v;
+    for(auto &p:m){
+        v.push_back(p);
+    }
+    sort(v.begin(),v.end(),[](auto &a,auto &b){
+        return a.second<b.second; //Acending
+    });
+
+
+------------------------------------------------------
+Vector Sorting 
+------------------------------------------------------
+    class Item{
+        public:
+            int val;
+            int wt;
+            Item(int val, int wt){
+                this->val = val;
+                this->wt = wt;
+            }
+    };
+    
+    vector<Item> arr;
+    
+    for(int i=0; i<val.size(); i++)
+        arr.push_back(Item(val[i], wt[i]));
+    
+    sort(arr.begin(), arr.end(), [](Item &a, Item &b){
+        return (double)a.val/a.wt > (double)b.val/b.wt;
+    });
