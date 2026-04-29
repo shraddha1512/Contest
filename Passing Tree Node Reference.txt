@@ -1,0 +1,42 @@
+//----------
+void inorder(Node *root, Node **first,Node **mid, Node **last, Node **prev)
+//----------
+{
+    if(root==NULL) return;
+    
+    inorder(root->left, first, mid, last, prev);
+    
+    if((*prev != NULL) &&  ((*prev)->data > root->data)){
+        if(*first==NULL)
+        {
+            *first = *prev;
+            *mid = root;
+        }
+        else
+            *last = root;
+    }
+    
+    *prev = root;
+    
+    inorder(root->right, first,mid, last, prev);
+}
+
+//-------------
+void correctBST(Node* root) 
+//-------------
+{
+    Node *first = NULL, *mid = NULL, *last = NULL, *prev = NULL;
+    inorder(root, &first, &mid, &last, &prev);
+    
+    if(last){
+        int temp = first->data;
+        first->data = last->data;
+        last->data = temp;
+    }
+    else{
+        int temp = first->data;
+        first->data = mid->data;
+        mid->data = temp;
+    }
+    
+}
